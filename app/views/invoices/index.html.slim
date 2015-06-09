@@ -1,0 +1,43 @@
+h1 Listing invoices
+
+table
+  thead
+    tr
+      th Number
+      th Due date
+      th Issue date
+      th Paid on
+      th Notes
+      th Status
+      th Tax amount
+      th Total amount
+      th Created date
+      th Updated date
+      th Currency code
+      th Currency name
+      th
+
+  tbody
+    - @invoices.each do |invoice|
+      tr
+        td = invoice.number
+        td = invoice.due_date
+        td = invoice.issue_date
+        td = invoice.paid_on
+        td = invoice.notes
+        td = invoice.status
+        td = invoice.tax_amount
+        td = invoice.total_amount
+        td = invoice.created_date
+        td = invoice.updated_date
+        td = invoice.currency_code
+        td = invoice.currency_name
+        td = link_to 'Show', invoice
+
+br
+
+- if current_user.try(:ready_to_api_call?)
+  = link_to 'Synchronize with BillApp', synchronize_invoices_path, method: :put
+- else
+  = link_to 'Set BillApp credentails', edit_registration_path(current_user)
+

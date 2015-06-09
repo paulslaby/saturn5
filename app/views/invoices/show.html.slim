@@ -1,0 +1,59 @@
+p#notice = notice
+
+p
+  strong Number:
+  = @invoice.number
+p
+  strong Due date:
+  = @invoice.due_date
+p
+  strong Issue date:
+  = @invoice.issue_date
+p
+  strong Paid on:
+  = @invoice.paid_on
+p
+  strong Notes:
+  = @invoice.notes
+p
+  strong Status:
+  = @invoice.status
+p
+  strong Tax amount:
+  = @invoice.tax_amount
+p
+  strong Total amount:
+  = @invoice.total_amount
+p
+  strong Created date:
+  = @invoice.created_date
+p
+  strong Updated date:
+  = @invoice.updated_date
+p
+  strong Currency code:
+  = @invoice.currency_code
+p
+  strong Currency name:
+  = @invoice.currency_name
+
+p
+  strong Lines:
+  table
+    tr
+      th Description
+      th Quantity
+      th Unit Price
+      th VAT
+      th
+    - @invoice.lines.each do |line|
+      td = line.description
+      td = line.quantity
+      td = line.unit_price
+      td = line.vat
+      / td = link_to 'Add Costs', new_cost_line_path(line)
+
+
+
+
+= link_to 'Back', invoices_path

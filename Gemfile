@@ -41,6 +41,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-doc'
   gem 'rspec-rails', '>= 3.1'
+  gem 'letter_opener'
 end
 
 group :staging, :production do
@@ -56,3 +57,7 @@ group :test do
   gem 'webmock'
 end
 
+gem 'validates_timeliness'
+gem 'httparty'
+
+gem 'cancancan'
