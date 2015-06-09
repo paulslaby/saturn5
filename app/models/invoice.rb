@@ -3,8 +3,9 @@ class Invoice < ActiveRecord::Base
   include HTTParty
 
   belongs_to :user
-
   has_many :lines, dependent: :destroy
+
+  before_save :cache_costs
 
   validates :number, presence: true, length: {in: 0..255}
   validates :remote_id, presence: true, numericality: {only_integer: true}
@@ -22,7 +23,16 @@ class Invoice < ActiveRecord::Base
 
   scope :for_user_id, ->(user_id){where(user_id: user_id)}
 
+  def amount_without_tax
+    total_amount - tax_amount
+  end
 
+  def positive_balance?
+    amount_without_tax > total_costs
+  end
+  def negative_balance?
+    amount_without_tax < total_costs
+  end
 
 
   def update_from_billapp!
@@ -95,5 +105,10 @@ class Invoice < ActiveRecord::Base
     end
 
     result
+  end
+
+  private
+  def cache_costs
+    self.total_costs = lines.inject(0){|sum, l| sum + (l.costs||0) }
   end
 end

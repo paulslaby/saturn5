@@ -1,6 +1,6 @@
 h1 Listing invoices
 
-table
+table class="table"
   thead
     tr
       th Number
@@ -14,30 +14,26 @@ table
       th Created date
       th Updated date
       th Currency code
-      th Currency name
-      th
 
   tbody
     - @invoices.each do |invoice|
-      tr
-        td = invoice.number
-        td = invoice.due_date
-        td = invoice.issue_date
-        td = invoice.paid_on
-        td = invoice.notes
+      tr class="#{invoice.positive_balance? ? 'success' : 'danger'}"
+        td = link_to invoice.number, invoice
+        td =l invoice.due_date
+        td =l invoice.issue_date
+        td =l invoice.paid_on
+        td = truncate invoice.notes
         td = invoice.status
         td = invoice.tax_amount
         td = invoice.total_amount
-        td = invoice.created_date
-        td = invoice.updated_date
+        td =l invoice.created_date
+        td =l invoice.updated_date
         td = invoice.currency_code
-        td = invoice.currency_name
-        td = link_to 'Show', invoice
 
 br
 
 - if current_user.try(:ready_to_api_call?)
-  = link_to 'Synchronize with BillApp', synchronize_invoices_path, method: :put
+  = link_to 'Synchronize with BillApp', synchronize_invoices_path, method: :put, class: 'btn btn-default'
 - else
-  = link_to 'Set BillApp credentails', edit_registration_path(current_user)
+  = link_to 'Set BillApp credentails', edit_registration_path(current_user), class: 'btn btn-default'
 

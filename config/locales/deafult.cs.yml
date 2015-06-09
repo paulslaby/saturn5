@@ -1,0 +1,217 @@
+cs:
+  support:
+    select:
+      prompt: Prosím vyberte si
+    array:
+      last_word_connector: " a "
+      two_words_connector: " a "
+      words_connector: ", "
+  activity:
+    '1': Nízká
+    '2': Střední
+    '3': Vysoká
+  coefficient_groups:
+    index:
+      title: Tabulky
+    new:
+      title: Nová tabulka
+    edit:
+      title: "Úprava tabulky"
+  substance:
+    carbohydrate: Sacharidy
+    protein: Bílkoviny
+  boolean:
+    'false': Ne
+    'true': Ano
+  date:
+    formats:
+      short: "%d %b"
+      default: "%d. %m. %Y"
+      long: "%d. %B %Y"
+      only_day: "%A"
+      with_day: "%A %d. %m. %Y"
+    month_names:
+    -
+    - Leden
+    - "Únor"
+    - Březen
+    - Duben
+    - Květen
+    - "Červen"
+    - "Červenec"
+    - Srpen
+    - Září
+    - "Říjen"
+    - Listopad
+    - Prosinec
+    order:
+    - :day
+    - :month
+    - :year
+    abbr_day_names:
+    - Ne
+    - Po
+    - "Út"
+    - St
+    - "Čt"
+    - Pá
+    - So
+    abbr_month_names:
+    -
+    - Led
+    - "Úno"
+    - Bře
+    - Dub
+    - Kvě
+    - "Čvn"
+    - "Čvc"
+    - Srp
+    - Zář
+    - "Říj"
+    - Lis
+    - Pro
+    day_names:
+    - Neděle
+    - Pondělí
+    - "Úterý"
+    - Středa
+    - "Čtvrtek"
+    - Pátek
+    - Sobota
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: asi hodinou
+        other: asi %{count} hodinami
+        few: asi %{count} hodinami
+      about_x_months:
+        one: asi měsícem
+        other: asi %{count} měsíci
+        few: asi %{count} měsíci
+      about_x_years:
+        one: asi rokem
+        other: asi %{count} roky
+        few: asi %{count} roky
+      almost_x_years:
+        one: téměř rokem
+        other: téměř %{count} roky
+        few: téměř %{count} roky
+      half_a_minute: půl minutou
+      less_than_x_minutes:
+        one: necelou minutou
+        other: ani ne %{count} minutami
+        few: ani ne %{count} minutami
+      less_than_x_seconds:
+        one: necelou sekundou
+        other: ani ne %{count} sekundami
+        few: ani ne %{count} sekundami
+      over_x_years:
+        one: více než rokem
+        other: více než %{count} roky
+        few: více než %{count} roky
+      x_days:
+        one: 24 hodinami
+        other: "%{count} dny"
+        few: "%{count} dny"
+      x_minutes:
+        one: minutou
+        other: "%{count} minutami"
+        few: "%{count} minutami"
+      x_months:
+        one: měsícem
+        other: "%{count} měsíci"
+        few: "%{count} měsíci"
+      x_seconds:
+        one: sekundou
+        other: "%{count} sekundami"
+        few: "%{count} sekundami"
+    prompts:
+      day: Den
+      hour: Hodina
+      minute: Minuta
+      month: Měsíc
+      second: Sekunda
+      year: Rok
+  errors:
+    template:
+      header:
+        one: Při ukládání objektu %{model} došlo k chybám a nebylo jej možné uložit
+        other: Při ukládání objektu %{model} došlo ke %{count} chybám a nebylo možné jej uložit
+        few: Při ukládání objektu %{model} došlo ke %{count} chybám a nebylo možné jej uložit
+      body: 'Následující pole obsahují chybně vyplněné údaje: '
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: musí být potvrzeno
+      blank: je povinná položka
+      confirmation: nebylo potvrzeno
+      empty: nesmí být prázdný/á/é
+      equal_to: musí být rovno %{count}
+      even: musí být sudé číslo
+      exclusion: je vyhrazeno pro jiný účel
+      greater_than: musí být větší než %{count}
+      greater_than_or_equal_to: musí být větší nebo rovno %{count}
+      inclusion: není v seznamu povolených hodnot
+      invalid: není platná hodnota
+      less_than: musí být méně než %{count}
+      less_than_or_equal_to: musí být méně nebo rovno %{count}
+      not_an_integer: musí být celé číslo
+      not_a_number: není číslo
+      odd: musí být liché číslo
+      record_invalid: 'Validace je neúspešná: %{errors}'
+      taken: již databáze obsahuje
+      too_long: je příliš dlouhý/á/é (max. %{count} znaků)
+      too_short: je příliš krátký/á/é (min. %{count} znaků)
+      wrong_length: nemá správnou délku (očekáváno %{count} znaků)
+  validates_timeliness:
+    error_value_formats:
+      datetime: "%d.%m.%Y %H:%M:%S"
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: Kč
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Miliarda
+          million: Milion
+          quadrillion: Kvadrilion
+          thousand: Tisíc
+          trillion: Bilion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: false
+        strip_insignificant_zeros: false
+      storage_units:
+        format: "%n %u"
+        units:
+          byte: B
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  time:
+    am: am
+    formats:
+      default: "%d. %m. %Y %H:%M"
+      only_time: "%H:%M"
