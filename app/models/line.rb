@@ -7,7 +7,7 @@ class Line < ActiveRecord::Base
   validates :vat, presence: true, numericality: true
   validates :invoice, presence: true
 
-  validates :costs, presence: true, numericality: true
+  validates :costs, numericality: true, allow_nil: true
 
 
   def from_billapp_json json
