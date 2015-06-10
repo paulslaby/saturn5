@@ -38,6 +38,26 @@ cs:
         title: Přihlášení
         submit: Přihlásit
         forgotten_password: Zapomenuté heslo
+    confirmations:
+      new:
+        title: Pošli mi instrukce znovu
+    passwords:
+      edit:
+        title: Změna hesla
+        submit: Změň heslo
+        new_password: Nové heslo
+      new:
+        submit: Pošli mi instrukce ke změně hesla
+        title: Zapomněl jsi heslo?
+    registrations:
+      edit:
+        cancel: Rušení účtu
+        cancel_button: Zruš účet
+        submit: Uložit
+        title: Úprava uživatele
+      new:
+        title: Registrace
+        submit: Registruj
     passwords:
       send_instructions: 'Za několik minut obdržíte email s instrukcemi k nastavení nového hesla.'
       updated: 'Vaše heslo bylo úspěšně změněno. Nyní jste přihlášen(a).'
