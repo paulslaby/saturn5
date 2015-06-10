@@ -26,6 +26,16 @@
             <li><%= link_to 'Login', new_user_session_path %></li>
             <li><%= link_to 'Register', new_user_registration_path %></li>
           <% end %>
+
+
+        <li class="dropdown lang">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#"><%= t("header.lang_#{I18n.locale}") %> <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <% I18n.available_locales.each do |locale| %>
+              <li><%= link_to t("header.lang_#{locale}"), {locale: 'cs'} %></li>
+            <% end %>
+          </ul>
+        </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

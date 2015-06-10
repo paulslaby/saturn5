@@ -1,0 +1,13 @@
+
+cs:
+  routes:
+    invoices: faktury
+    synchronize: synchronizovat
+    new: novy
+    edit: upravit
+    users: uzivatel
+    sign_up: registrovat
+    sign_in: prihlasit
+    signo_out: odhlasit
+    cancel: zrusit
+    password: heslo

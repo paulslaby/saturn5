@@ -1,59 +1,51 @@
-p#notice = notice
 
-p
-  strong Number:
-  = @invoice.number
-p
-  strong Due date:
-  = @invoice.due_date
-p
-  strong Issue date:
-  = @invoice.issue_date
-p
-  strong Paid on:
-  = @invoice.paid_on
-p
-  strong Notes:
-  = @invoice.notes
-p
-  strong Status:
-  = @invoice.status
-p
-  strong Tax amount:
-  = @invoice.tax_amount
-p
-  strong Total amount:
-  = @invoice.total_amount
-p
-  strong Created date:
-  = @invoice.created_date
-p
-  strong Updated date:
-  = @invoice.updated_date
-p
-  strong Currency code:
-  = @invoice.currency_code
-p
-  strong Currency name:
-  = @invoice.currency_name
+h1
+  = "Invoice no. #{@invoice.number}"
+  span.label.label-primary.label-as-badge
+    = @invoice.status
+hr
+div.row
+  div.col-md-3
+    dl.dl-horizontal
+      dt Tax amount:
+      dd.text-right = "#{sprintf("%.2f", @invoice.tax_amount)} #{@invoice.currency_code}"
+      dt Total amount:
+      dd.text-right = "#{sprintf("%.2f", @invoice.total_amount)} #{@invoice.currency_code}"
+      dt Total costs:
+      dd.text-right = "#{sprintf("%.2f", @invoice.total_costs)} #{@invoice.currency_code}"
+      dt ROI:
+      dd.text-right = @invoice.roi.round.to_s + ' %'
+  div.col-md-3
+    dl.dl-horizontal
+      dt Issue date:
+      dd.text-right =l @invoice.issue_date
+      dt Due date:
+      dd.text-right =l @invoice.due_date
 
-p
-  strong Lines:
-  table
-    tr
-      th Description
-      th Quantity
-      th Unit Price
-      th VAT
-      th
-    - @invoice.lines.each do |line|
-      td = line.description
-      td = line.quantity
-      td = line.unit_price
-      td = line.vat
-      / td = link_to 'Add Costs', new_cost_line_path(line)
+= simple_form_for @invoice do |f|
+  p
+    table.table
+      tr
+        th Description
+        th.text-right Quantity
+        th.text-right Unit Price
+        th.text-right VAT
+        th Costs
+        th
+      - @invoice.lines.each do |line|
+        tr class="#{line.positive_balance? ? 'success' : 'danger'}"
+          td = line.description
+          td.text-right = line.quantity
+          td.text-right = "#{sprintf("%.2f", line.unit_price)} #{@invoice.currency_code}"
+          td.text-right = "#{line.vat} %"
+          td = f.fields_for :lines, line do |ff|
+            div = ff.input :costs, label: false
+          / td = link_to 'Add Costs', new_cost_line_path(line)
+
+  - if @invoice.notes.present?
+    p
+      strong Notes:
+      = @invoice.notes
+  = f.submit 'Save', class: 'btn btn-primary'
 
 
-
-
-= link_to 'Back', invoices_path

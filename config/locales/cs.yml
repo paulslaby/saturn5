@@ -19,11 +19,11 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+cs:
   header:
     lang_cs: CZ
     lang_en: EN
   will_paginate:
-    next_label: Next
-    previous_label: Previous
+    next_label: Následující
+    previous_label: Předchozí
     page_gap: "..."

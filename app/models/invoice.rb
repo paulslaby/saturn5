@@ -4,11 +4,12 @@ class Invoice < ActiveRecord::Base
 
   belongs_to :user
   has_many :lines, dependent: :destroy
+  accepts_nested_attributes_for :lines
 
   before_save :cache_costs
 
   validates :number, presence: true, length: {in: 0..255}
-  validates :remote_id, presence: true, numericality: {only_integer: true}
+  validates :remote_id, presence: true, numericality: {only_integer: true}, uniqueness: {scope: :user}
   validates :status, presence: true, length: {in: 0..255}
   validates :currency_code, presence: true, length: {in: 0..255}
   # validates :currency_name, presence: true, length: {in: 0..255}
@@ -22,18 +23,28 @@ class Invoice < ActiveRecord::Base
   validates :user, presence: true
 
   scope :for_user_id, ->(user_id){where(user_id: user_id)}
+  default_scope { order('created_date desc') }
+
+  def roi
+    return 0 if total_costs.zero?
+    profit/total_costs*100
+  end
+
+  def profit
+    amount_without_tax - total_costs
+  end
 
   def amount_without_tax
     total_amount - tax_amount
   end
 
   def positive_balance?
-    amount_without_tax > total_costs
-  end
-  def negative_balance?
-    amount_without_tax < total_costs
+    profit > 0
   end
 
+  def negative_balance?
+    profit < 0
+  end
 
   def update_from_billapp!
     login, pass, agenda = self.user.billapp_login, self.user.billapp_password, self.user.billapp_agenda

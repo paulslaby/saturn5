@@ -1,0 +1,8 @@
+
+en:
+  routes:
+    invoices: invoices
+    synchronize: synchronize
+    new: new
+    edit: edit
+    users: users

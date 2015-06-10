@@ -1,18 +1,26 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show]
+  before_action :set_invoice, only: [:show, :update]
   authorize_resource
 
   # GET /invoices
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.accessible_by(current_ability).paginate(page: params[:page])
   end
 
   # GET /invoices/1
   def show
   end
 
+  def update
+    if @invoice.update(invoice_params)
+      redirect_to @invoice, notice: 'Costs successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def synchronize
-    @invoices = Invoice.for_user_id(current_user.try(:id))
+    @invoices = Invoice.accessible_by(current_ability).for_user_id(current_user.try(:id))
 
     remote_ids = @invoices.map &:remote_id
 
@@ -31,7 +39,6 @@ class InvoicesController < ApplicationController
         raise ActiveRecord::Rollback
       end
     end
-
   end
 
   private
@@ -42,6 +49,6 @@ class InvoicesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invoice_params
-      params.require(:invoice).permit(:number, :due_date, :issue_date, :paid_on, :notes, :status, :tax_amount, :total_amount, :created_date, :updated_date, :currency_code, :currency_name)
+      params.require(:invoice).permit(lines_attributes: [:id, :costs])
     end
 end

@@ -6,29 +6,29 @@ table class="table"
       th Number
       th Due date
       th Issue date
-      th Paid on
-      th Notes
       th Status
-      th Tax amount
-      th Total amount
-      th Created date
-      th Updated date
-      th Currency code
+      th.text-right Tax amount
+      th.text-right Total amount
+      th.text-right Total costs
+      th.text-right Profit
 
   tbody
     - @invoices.each do |invoice|
       tr class="#{invoice.positive_balance? ? 'success' : 'danger'}"
-        td = link_to invoice.number, invoice
+        td
+          = link_to invoice.number, invoice
         td =l invoice.due_date
         td =l invoice.issue_date
-        td =l invoice.paid_on
-        td = truncate invoice.notes
-        td = invoice.status
-        td = invoice.tax_amount
-        td = invoice.total_amount
-        td =l invoice.created_date
-        td =l invoice.updated_date
-        td = invoice.currency_code
+        td
+          span.label.label-primary.label-as-badge = invoice.status
+        td.text-right = "#{sprintf("%.2f", invoice.tax_amount)} #{invoice.currency_code}"
+        td.text-right = "#{sprintf("%.2f", invoice.total_amount)} #{invoice.currency_code}"
+        td.text-right = "#{sprintf("%.2f", invoice.total_costs)} #{invoice.currency_code}"
+        td.text-right
+          = "#{sprintf("%.2f", invoice.profit)} #{invoice.currency_code}"
+          span class="roi-badge label label-as-badge label-#{invoice.positive_balance? ? 'success' : 'danger'}" = invoice.roi.round.to_s + ' %'
+
+= will_paginate @invoices
 
 br
 

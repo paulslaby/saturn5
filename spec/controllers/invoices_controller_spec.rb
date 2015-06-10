@@ -18,37 +18,29 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe InvoicesController, type: :controller do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Invoice. As you add validations to Invoice, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # InvoicesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+RSpec.describe InvoicesController do
+  let(:invoice) { create(:invoice, :with_line) }
+  let(:user) { invoice.user }
+  before { sign_in user }
 
   describe "GET #index" do
     it "assigns all invoices as @invoices" do
-      invoice = Invoice.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:invoices)).to eq([invoice])
+      get :index, {}
+      expect(assigns(:invoices).to_a).to eq([invoice])
     end
   end
 
   describe "GET #show" do
     it "assigns the requested invoice as @invoice" do
-      invoice = Invoice.create! valid_attributes
-      get :show, {:id => invoice.to_param}, valid_session
+      get :show, {:id => invoice.to_param}
       expect(assigns(:invoice)).to eq(invoice)
+    end
+  end
+
+  describe "PUT #update" do
+    it "assigns the requested invoice as @invoice and updates it" do
+      patch :update, {:id => invoice.id, :invoice => { :lines_attributes => [{ id: invoice.lines.first.id, costs: 300 }] } }
+      expect(assigns(:invoice).total_costs).to eq(300)
     end
   end
 end

@@ -61,3 +61,7 @@ gem 'validates_timeliness'
 gem 'httparty'
 
 gem 'cancancan'
+
+gem 'will_paginate-bootstrap'
+
+gem 'route_translator'
