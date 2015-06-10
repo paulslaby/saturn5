@@ -31,8 +31,8 @@ FactoryGirl.define do
     paid_on "2015-06-09"
     notes "MyText"
     status "draft"
-    tax_amount "9.99"
-    total_amount "9.99"
+    tax_amount "100"
+    total_amount "700"
     created_date "2015-06-09 12:07:10"
     updated_date "2015-06-09 12:07:10"
     currency_code "CZK"
@@ -41,6 +41,10 @@ FactoryGirl.define do
 
     trait :with_line do
       lines {[FactoryGirl.create(:line)]}
+    end
+
+    trait :with_line_with_costs do
+      lines {[FactoryGirl.create(:line, :with_costs)]}
     end
 
   end

@@ -26,9 +26,34 @@
 require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
-  let(:invoice){create(:invoice)}
+  let(:invoice){create(:invoice, :with_line_with_costs)}
+
   it 'computes profit' do
-    # invoice.
+    expect(invoice.profit).to eq 300
+  end
+
+
+  it 'computes ROI' do
+    expect(invoice.roi).to eq 100
+  end
+
+  it 'computes amount_without_tax' do
+    expect(invoice.amount_without_tax).to eq 600
+  end
+
+  it 'computes positive/negative balance?' do
+    expect(invoice.positive_balance?).to eq true
+    expect(invoice.negative_balance?).to eq false
+    invoice.total_amount = 100
+    expect(invoice.positive_balance?).to eq false
+    expect(invoice.negative_balance?).to eq true
+  end
+
+  it 'caches costs' do
+    invoice.lines.map{|l| l.costs *= 3}
+    invoice.save!
+    invoice.reload
+    expect(invoice.total_costs).to eq 900
   end
 
 end

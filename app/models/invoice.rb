@@ -108,6 +108,7 @@ class Invoice < ActiveRecord::Base
       json['lines'].each do
         |json_line|
         line.from_billapp_json json_line
+        line.invoice = self
       end
     end
 

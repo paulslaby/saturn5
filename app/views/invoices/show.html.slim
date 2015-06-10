@@ -1,8 +1,8 @@
 
 h1
   = "Invoice no. #{@invoice.number}"
-  span.label.label-primary.label-as-badge
-    = @invoice.status
+  span class="label-#{@invoice.positive_balance? ? 'success' : 'danger'} label label-as-badge"
+    = @invoice.roi.round.to_s + ' %'
 hr
 div.row
   div.col-md-3
@@ -13,8 +13,6 @@ div.row
       dd.text-right = "#{sprintf("%.2f", @invoice.total_amount)} #{@invoice.currency_code}"
       dt Total costs:
       dd.text-right = "#{sprintf("%.2f", @invoice.total_costs)} #{@invoice.currency_code}"
-      dt ROI:
-      dd.text-right = @invoice.roi.round.to_s + ' %'
   div.col-md-3
     dl.dl-horizontal
       dt Issue date:
@@ -28,16 +26,20 @@ div.row
       tr
         th Description
         th.text-right Quantity
-        th.text-right Unit Price
-        th.text-right VAT
-        th Costs
+        th.text-right Unit Price (VAT excl.)
+        th.text-right VAT rate
+        th.text-right Unit Price (VAT incl.)
+        th.text-right Total Price
+        th Total Costs
         th
       - @invoice.lines.each do |line|
         tr class="#{line.positive_balance? ? 'success' : 'danger'}"
           td = line.description
           td.text-right = line.quantity
-          td.text-right = "#{sprintf("%.2f", line.unit_price)} #{@invoice.currency_code}"
+          td.text-right = "#{sprintf("%.2f", line.unit_amount_without_tax)} #{@invoice.currency_code}"
           td.text-right = "#{line.vat} %"
+          td.text-right = "#{sprintf("%.2f", line.unit_amount_with_tax)} #{@invoice.currency_code}"
+          td.text-right = "#{sprintf("%.2f", line.total_amount)} #{@invoice.currency_code}"
           td = f.fields_for :lines, line do |ff|
             div = ff.input :costs, label: false
           / td = link_to 'Add Costs', new_cost_line_path(line)

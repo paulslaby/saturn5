@@ -26,7 +26,7 @@ class InvoicesController < ApplicationController
 
     Invoice.transaction do
       begin
-        @invoices.map(&:update_from_billapp)
+        @invoices.map(&:update_from_billapp!)
 
         @new_invoices = Invoice.new_invoices_from_billapp(current_user, ignore_ids: remote_ids)
         @new_invoices.map &:save!

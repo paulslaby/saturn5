@@ -27,21 +27,46 @@ class Line < ActiveRecord::Base
   validates :costs, numericality: true
 
 
+
+
+  def profit
+    total_amount_without_tax - costs
+  end
+
+  def total_amount_without_tax
+    unit_amount_without_tax*quantity
+  end
+
   def total_amount
-    quantity*unit_price
+    unit_amount_with_tax*quantity
   end
-  def tax_amount
-    unit_price.to_f*vat/(100+vat)
+
+  def total_profit
+    unit_profit*quantity
   end
-  def amount_without_tax
-    total_amount - tax_amount
+
+  def unit_tax_amount
+    unit_price * vat/100
+  end
+
+  def unit_amount_without_tax
+    unit_price
+  end
+
+  def unit_amount_with_tax
+    unit_price + unit_tax_amount
+  end
+
+  def unit_profit
+    unit_amount_without_tax - (costs||0)
   end
 
   def positive_balance?
-    amount_without_tax > costs
+    profit > 0
   end
+
   def negative_balance?
-    amount_without_tax < costs
+    profit < 0
   end
 
   def from_billapp_json json
