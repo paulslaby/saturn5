@@ -34,6 +34,10 @@ cs:
     sessions:
       signed_in: 'Přihlášení úspěšné.'
       signed_out: 'Odhlášení úspěšné.'
+      new:
+        title: Přihlášení
+        submit: Přihlásit
+        forgotten_password: Zapomenuté heslo
     passwords:
       send_instructions: 'Za několik minut obdržíte email s instrukcemi k nastavení nového hesla.'
       updated: 'Vaše heslo bylo úspěšně změněno. Nyní jste přihlášen(a).'

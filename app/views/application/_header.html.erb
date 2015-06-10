@@ -8,23 +8,23 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Saturn 5', root_path, class: 'navbar-brand' %>
+      <%= link_to t('header.brand'), root_path, class: 'navbar-brand' %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav pull-right">
-        <li><%= link_to 'About', root_path %></li>
+        <li><%= link_to t('header.about'), root_path %></li>
           <% if signed_in? %>
-            <li><%= link_to 'My Invoices', invoices_path %></li>
+            <li><%= link_to t('header.invoices'), invoices_path %></li>
             <li>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><%= link_to 'Settings', edit_user_registration_path(current_user) %></li>
-                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+                <li><%= link_to t('header.settings'), edit_user_registration_path(current_user) %></li>
+                <li><%= link_to t('header.logout'), destroy_user_session_path, method: :delete %></li>
               </ul>
             </li>
           <% else %>
-            <li><%= link_to 'Login', new_user_session_path %></li>
-            <li><%= link_to 'Register', new_user_registration_path %></li>
+            <li><%= link_to t('header.login'), new_user_session_path %></li>
+            <li><%= link_to t('header.register'), new_user_registration_path %></li>
           <% end %>
 
 
@@ -32,7 +32,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#"><%= t("header.lang_#{I18n.locale}") %> <span class="caret"></span></a>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <% I18n.available_locales.each do |locale| %>
-              <li><%= link_to t("header.lang_#{locale}"), {locale: 'cs'} %></li>
+              <li><%= link_to t("header.lang_#{locale}"), {locale: locale.to_s} %></li>
             <% end %>
           </ul>
         </li>

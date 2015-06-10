@@ -23,7 +23,34 @@ cs:
   header:
     lang_cs: CZ
     lang_en: EN
+    brand: Saturn 5
+    settings: Nastavení
+    login: Přihlásit
+    logout: Odhlásit
+    register: Registrovat
+    about: O projektu
+    invoices: Moje faktury
+  invoices:
+    index:
+      sync: Synchronizuj s BillApp
+      credentials: Nastav přihlašovací údaje do BillApp
+      title: Moje Faktury
+    show:
+      title: "Faktura č. %{number}"
+      submit: Uložit
   will_paginate:
     next_label: Následující
     previous_label: Předchozí
     page_gap: "..."
+  simple_form:
+    labels:
+      user:
+        email: Email
+        password: Heslo
+        password_confirmation: Ověření hesla
+        remember_me: Zapamatovat
+        current_password: Současné heslo
+        billapp_login: Přihlašovací jméno do BillApp
+        billapp_password: Heslo do BillApp
+        billapp_agenda: Název agendy v BillApp
+  are_you_sure: Opravdu?

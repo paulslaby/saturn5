@@ -1,36 +1,36 @@
 
 h1
-  = "Invoice no. #{@invoice.number}"
+  = t('.title', number: @invoice.number)
   span class="label-#{@invoice.positive_balance? ? 'success' : 'danger'} label label-as-badge"
     = @invoice.roi.round.to_s + ' %'
 hr
 div.row
   div.col-md-3
     dl.dl-horizontal
-      dt Tax amount:
+      dt = Invoice.human_attribute_name :tax_amount
       dd.text-right = "#{sprintf("%.2f", @invoice.tax_amount)} #{@invoice.currency_code}"
-      dt Total amount:
+      dt = Invoice.human_attribute_name :total_amount
       dd.text-right = "#{sprintf("%.2f", @invoice.total_amount)} #{@invoice.currency_code}"
-      dt Total costs:
+      dt = Invoice.human_attribute_name :total_costs
       dd.text-right = "#{sprintf("%.2f", @invoice.total_costs)} #{@invoice.currency_code}"
   div.col-md-3
     dl.dl-horizontal
-      dt Issue date:
+      dt = Invoice.human_attribute_name :issue_date
       dd.text-right =l @invoice.issue_date
-      dt Due date:
+      dt = Invoice.human_attribute_name :due_date
       dd.text-right =l @invoice.due_date
 
 = simple_form_for @invoice do |f|
   p
     table.table
       tr
-        th Description
-        th.text-right Quantity
-        th.text-right Unit Price (VAT excl.)
-        th.text-right VAT rate
-        th.text-right Unit Price (VAT incl.)
-        th.text-right Total Price
-        th Total Costs
+        th = Line.human_attribute_name :description
+        th.text-right = Line.human_attribute_name :quantity
+        th.text-right = Line.human_attribute_name :unit_amount_without_tax
+        th.text-right = Line.human_attribute_name :vat
+        th.text-right = Line.human_attribute_name :unit_amount_with_tax
+        th.text-right = Line.human_attribute_name :total_amount
+        th = Line.human_attribute_name :total_costs
         th
       - @invoice.lines.each do |line|
         tr class="#{line.positive_balance? ? 'success' : 'danger'}"
@@ -48,6 +48,6 @@ div.row
     p
       strong Notes:
       = @invoice.notes
-  = f.submit 'Save', class: 'btn btn-primary'
+  = f.submit t('.submit'), class: 'btn btn-primary'
 
 

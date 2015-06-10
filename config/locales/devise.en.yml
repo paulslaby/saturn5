@@ -44,6 +44,30 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      new:
+        title: Login
+        submit: Log In
+        forgotten_password: Forgotten Password
+    confirmations:
+      new:
+        title: Resend confirmation instructions
+    passwords:
+      edit:
+        title: "Change your password"
+        submit: "Change my password"
+        new_password: New Password
+      new:
+        submit: "Send me reset password instructions"
+        title: Forgot your password?
+    registrations:
+      edit:
+        cancel: Cancel my account
+        cancel_button: Cancel my account
+        submit: Save
+        title: Edit User
+      new:
+        title: Registration
+        submit: "Sign up"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

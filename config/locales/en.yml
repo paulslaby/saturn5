@@ -23,7 +23,34 @@ en:
   header:
     lang_cs: CZ
     lang_en: EN
+    brand: Saturn 5
+    settings: Settings
+    login: Login
+    logout: Logout
+    register: Register
+    about: About
+    invoices: My invoices
+  invoices:
+    index:
+      sync: Synchronize with BillApp
+      credentials: 'Set BillApp credentails'
+      title: My Invoices
+    show:
+      title: "Invoice no. %{number}"
+      submit: Save
   will_paginate:
     next_label: Next
     previous_label: Previous
     page_gap: "..."
+  simple_form:
+    labels:
+      user:
+        email: Email
+        password: 'Password'
+        password_confirmation: 'Password Confirmation'
+        remember_me: Remember Me
+        current_password: Current Password
+        billapp_login: BillApp Login
+        billapp_password: BillApp password
+        billapp_agenda: BillApp Agenda
+  are_you_sure: Are you sure?

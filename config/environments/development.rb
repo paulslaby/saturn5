@@ -44,7 +44,7 @@ Rails.application.configure do
   # I18n debug
   I18nLogger = ActiveSupport::Logger.new(Rails.root.join('log/i18n.log'))
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
 
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 

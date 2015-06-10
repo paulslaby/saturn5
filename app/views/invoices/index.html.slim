@@ -1,16 +1,15 @@
-h1 Listing invoices
+h1 = t('.title')
 
 table class="table"
   thead
     tr
-      th Number
-      th Due date
-      th Issue date
-      th Status
-      th.text-right Tax amount
-      th.text-right Total amount
-      th.text-right Total costs
-      th.text-right Profit
+      th = Invoice.human_attribute_name :number
+      th = Invoice.human_attribute_name :due_date
+      th = Invoice.human_attribute_name :issue_date
+      th.text-right = Invoice.human_attribute_name :tax_amount
+      th.text-right = Invoice.human_attribute_name :total_amount
+      th.text-right = Invoice.human_attribute_name :total_costs
+      th.text-right = Invoice.human_attribute_name :profit
 
   tbody
     - @invoices.each do |invoice|
@@ -19,8 +18,6 @@ table class="table"
           = link_to invoice.number, invoice
         td =l invoice.due_date
         td =l invoice.issue_date
-        td
-          span.label.label-primary.label-as-badge = invoice.status
         td.text-right = "#{sprintf("%.2f", invoice.tax_amount)} #{invoice.currency_code}"
         td.text-right = "#{sprintf("%.2f", invoice.total_amount)} #{invoice.currency_code}"
         td.text-right = "#{sprintf("%.2f", invoice.total_costs)} #{invoice.currency_code}"
@@ -33,7 +30,7 @@ table class="table"
 br
 
 - if current_user.try(:ready_to_api_call?)
-  = link_to 'Synchronize with BillApp', synchronize_invoices_path, method: :put, class: 'btn btn-default'
+  = link_to t('.sync'), synchronize_invoices_path, method: :put, class: 'btn btn-default'
 - else
-  = link_to 'Set BillApp credentails', edit_registration_path(current_user), class: 'btn btn-default'
+  = link_to t('.credentials'), edit_registration_path(current_user), class: 'btn btn-default'
 

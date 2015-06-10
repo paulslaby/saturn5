@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    invoice: Invoice
+    attributes:
+      invoice:
+        number: Number
+        due_date: Due date
+        issue_date: Issue date
+        status: Status
+        tax_amount: Tax Amount
+        total_amount: Total Amount
+        total_costs: Total Costs
+        profit: Profit
+      line:
+        description: Description
+        quantity: Quantity
+        unit_amount_without_tax: Unit Price (VAT excl.)
+        unit_amount_with_tax: Unit Price (VAT incl.)
+        total_amount: Total Price
+        vat: VAT Rate
+        total_costs: Total Costs
