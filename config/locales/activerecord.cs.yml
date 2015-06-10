@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    invoice: Faktura
+    attributes:
+      invoice:
+        number: Číslo
+        due_date: Datum splatnosti
+        issue_date: Datum uzavření
+        status: Status
+        tax_amount: Daň
+        total_amount: Částka celkem
+        total_costs: Celkové náklady
+        profit: Profit
+      line:
+        description: Popis
+        quantity: Množství
+        unit_amount_without_tax: Cena jednotky bez DPH
+        unit_amount_with_tax: Cena jednotky vč. DPH
+        total_amount: Celková částka
+        vat: Sazba daně
+        total_costs: Celkové náklady

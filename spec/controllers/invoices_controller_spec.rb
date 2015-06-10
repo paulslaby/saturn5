@@ -43,4 +43,11 @@ RSpec.describe InvoicesController do
       expect(assigns(:invoice).total_costs).to eq(300)
     end
   end
+
+  describe "PUT #synchronize" do
+    it "synchronizes invoices via api" do
+      # patch :synchronize # TODO: stub request
+      # expect(assigns(:invoices).count).to eq(2)
+    end
+  end
 end

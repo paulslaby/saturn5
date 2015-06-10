@@ -34,6 +34,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'annotate'
 end
 
 group :development, :test do
@@ -65,5 +66,3 @@ gem 'cancancan'
 gem 'will_paginate-bootstrap'
 
 gem 'route_translator'
-
-gem 'annotate'

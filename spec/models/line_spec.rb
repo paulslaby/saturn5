@@ -20,7 +20,7 @@ RSpec.describe Line, type: :model do
   let(:line){create(:line, :with_costs)}
 
   it 'computes profit' do
-    expect(line.profit).to eq 300
+    expect(line.unit_profit).to eq 300
   end
 
   it 'computes amount_without_tax' do
@@ -34,4 +34,16 @@ RSpec.describe Line, type: :model do
     expect(line.positive_balance?).to eq false
     expect(line.negative_balance?).to eq true
   end
+
+  it 'computes other values' do
+    expect(line.unit_amount_with_tax).to eq 690
+    expect(line.unit_tax_amount).to eq 90
+  end
+
+  it 'computes total values' do
+    line.quantity = 2
+    expect(line.total_profit).to eq 600
+    expect(line.total_amount).to eq 1380
+  end
+
 end

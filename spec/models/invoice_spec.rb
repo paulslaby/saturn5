@@ -56,4 +56,5 @@ RSpec.describe Invoice, type: :model do
     expect(invoice.total_costs).to eq 900
   end
 
+  # TODO: mock and test api sync
 end
