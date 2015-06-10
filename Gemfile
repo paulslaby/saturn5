@@ -65,3 +65,5 @@ gem 'cancancan'
 gem 'will_paginate-bootstrap'
 
 gem 'route_translator'
+
+gem 'annotate'
